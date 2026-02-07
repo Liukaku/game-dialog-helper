@@ -4,7 +4,7 @@ It's very messy fumbling through JSON files to build the dialog needed for the g
 
 style is whatever, i just need it to work.
 
-- [] i need to add in multi page dialog
+- [x] i need to add in multi page dialog
 - [x] i need to add in being able to save
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
