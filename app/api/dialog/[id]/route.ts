@@ -1,3 +1,4 @@
+import { Root } from "@/app/types";
 import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
@@ -23,5 +24,23 @@ export function GET(id: NextApiRequest) {
   Response.json(dialogs);
   return new Response(JSON.stringify(dialogs), {
     headers: { "Content-Type": "application/json" },
+  });
+}
+
+export async function POST(request: Request) {
+  const idValue = request.url?.split("/").slice(-1)[0];
+  const body: Root = await request.json();
+  console.log("Saving dialog:", idValue, body);
+
+  const dialogDir = path.join(process.cwd(), `public/dialog/`);
+
+  const filePath = path.join(dialogDir, `${idValue}.json`);
+  fs.writeFileSync(filePath, JSON.stringify(body, null, 2), "utf-8");
+
+  return new Response(null, {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }

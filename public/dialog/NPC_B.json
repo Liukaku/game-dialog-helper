@@ -1,187 +1,253 @@
 {
-    "general": {
-        "optionsByTier": [
-            {
-                "tier": 0,
-                "options": [
-                    {
-                        "key": "greeting",
-                        "image": "NPC_A.png",
-                        "body": "Hello govna, how can I help you today?",
-                        "responses": [
-                            {
-                                "body": "I need some bingbong.",
-                                "next": "info",
-                                "vibe": 0
-                            },
-                            {
-                                "body": "Just passing by.",
-                                "next": "bye",
-                                "vibe": 1
-                            }
-                        ]
-                    },
-                    {
-                        "key": "info",
-                        "body": "Sure, what do you want to know?",
-                        "responses": [
-                            {
-                                "body": "Tell me about the town.",
-                                "next": "town_info",
-                                "vibe": 0
-                            },
-                            {
-                                "body": "I have no questions.",
-                                "next": "bye",
-                                "vibe": 1
-                            }
-                        ]
-                    },
-                    {
-                        "key": "town_info",
-                        "body": "A bingus, me pringus, a bing bong"
-                    },
-                    {
-                        "key": "bye",
-                        "body": "Goodbye! Have a great day!",
-                        "responses": []
-                    }
-                ]
-            },
-            {
-                "tier": 10,
-                "options":[
-                    {                        
-                        "key": "greeting",
-                        "image": "NPC_A.png",
-                        "body": "Hey bby grl, whats up?",
-                        "responses": [
-                            {
-                                "body": "I need some information.",
-                                "next": "info",
-                                "vibe": 0
-                            },
-                            {
-                                "body": "Just passing by.",
-                                "next": "bye",
-                                "vibe": 1
-                            }
-                        ]
-                    }
-                ]
-            }
+  "general": {
+    "optionsByTier": [
+      {
+        "tier": 0,
+        "options": [
+          {
+            "key": "greeting",
+            "image": "NPC_A.png",
+            "body": "Hello govna, how can I help you today?",
+            "responses": [
+              {
+                "body": "I need some bingbong.",
+                "next": "info",
+                "vibe": 0
+              },
+              {
+                "body": "Just passing by.",
+                "next": "bye",
+                "vibe": 1
+              }
+            ]
+          },
+          {
+            "key": "info",
+            "body": "Sure, what do you want to know?",
+            "responses": [
+              {
+                "body": "Tell me about the town.",
+                "next": "town_info",
+                "vibe": 0
+              },
+              {
+                "body": "I have no questions.",
+                "next": "bye",
+                "vibe": 1
+              }
+            ]
+          },
+          {
+            "key": "town_info",
+            "body": "A bingus, me pringus, a bing bong"
+          },
+          {
+            "key": "bye",
+            "body": "Goodbye! Have a great day!",
+            "responses": []
+          }
         ]
-    },
-    "story": {
-        "quests": [
-            {
-                "questUid": "Quest_Test",
-                "questStepIndex": 1,
-                "options": [
-                    {
-                        "key": "greeting",
-                        "image": "NPC_A.png",
-                        "body": "Have we met before?",
-                        "responses": [
-                            {
-                                "body": "NPC_A asked me to give you a message",
-                                "next": "quest_dialog_01",
-                                "vibe": 0
-                            },
-                            {
-                                "body": "Just passing by.",
-                                "next": "bye",
-                                "vibe": 1
-                            }
-                        ]
-                    },
-                    {
-                        "key": "quest_dialog_01",
-                        "body": "Oh, I see. What did they say?",
-                        "responses": [
-                            {
-                                "body": "They told me to tell you to do your job for a change",
-                                "next": "quest_dialog_02",
-                                "vibe": 0
-                            },
-                            {
-                                "body": "I forgor.",
-                                "next": "bye",
-                                "vibe": 1
-                            }
-                        ]
-                    },
-                    {
-                        "key": "quest_dialog_02",
-                        "body": "Waaaaaaaoowwww wowowowow weeeeowwwww",
-                        "progressQuest": true
-                    },
-                    {
-                        "key": "bye",
-                        "body": "Goodbye! Have a great day!"
-                    }
-                ]
-            },
-                        {
-                "questUid": "Item_Pickup_Quest_Test",
-                "questStepIndex": 0,
-                "options": [
-                    {
-                        "key": "greeting",
-                        "image": "NPC_A.png",
-                        "body": "You looking for somethign to do?",
-                        "pages": [
-                            {
-                                "body": "I have a job for you, if you're interested.",
-                                "responses": [
-                                    {
-                                        "body": "Yes pls, i need money.",
-                                        "next": "quest_dialog_01",
-                                        "vibe": 0
-                                    },
-                                    {
-                                        "body": "Just passing by.",
-                                        "next": "bye",
-                                        "vibe": 1
-                                    }
-                                ]
-                            }
-                        ],
-                        "responses": [
-                            {
-                                "body": "Yes pls, i need money.",
-                                "next": "quest_dialog_01",
-                                "vibe": 0
-                            },
-                            {
-                                "body": "Just passing by.",
-                                "next": "bye",
-                                "vibe": 1
-                            }
-                        ]
-                    },
-                    {
-                        "key": "quest_dialog_01",
-                        "body": "See that spinng cube? Go pick it up for me.",
-                        "responses": [
-                            {
-                                "body": "oki",
-                                "next": "quest_dialog_02",
-                                "vibe": 0
-                            }
-                        ]
-                    },
-                    {
-                        "key": "quest_dialog_02",
-                        "body": "Fanks luv",
-                        "progressQuest": true
-                    },
-                    {
-                        "key": "bye",
-                        "body": "Goodbye! Have a great day!"
-                    }
-                ]
-            }
+      },
+      {
+        "tier": 10,
+        "options": [
+          {
+            "key": "greeting",
+            "image": "NPC_A.png",
+            "body": "Hey bby grl, whats up?",
+            "responses": [
+              {
+                "body": "I need some information.",
+                "next": "info",
+                "vibe": 0
+              },
+              {
+                "body": "Just passing by.",
+                "next": "bye",
+                "vibe": 1
+              }
+            ]
+          }
         ]
-    }
+      }
+    ]
+  },
+  "story": {
+    "quests": [
+      {
+        "questUid": "Quest_Test",
+        "questStepIndex": 1,
+        "options": [
+          {
+            "key": "greeting",
+            "image": "NPC_A.png",
+            "body": "Have we met before?",
+            "responses": [
+              {
+                "body": "NPC_A asked me to give you a message",
+                "next": "quest_dialog_01",
+                "vibe": 0
+              },
+              {
+                "body": "Just passing by.",
+                "next": "bye",
+                "vibe": 1
+              }
+            ]
+          },
+          {
+            "key": "quest_dialog_01",
+            "body": "Oh, I see. What did they say?",
+            "responses": [
+              {
+                "body": "They told me to tell you to do your job for a change",
+                "next": "quest_dialog_02",
+                "vibe": 0
+              },
+              {
+                "body": "I forgor.",
+                "next": "bye",
+                "vibe": 1
+              }
+            ]
+          },
+          {
+            "key": "quest_dialog_02",
+            "body": "Waaaaaaaoowwww wowowowow weeeeowwwww",
+            "progressQuest": true,
+            "responses": []
+          },
+          {
+            "key": "bye",
+            "body": "Goodbye! Have a great day!",
+            "responses": []
+          }
+        ]
+      },
+      {
+        "questUid": "Item_Pickup_Quest_Test",
+        "questStepIndex": 0,
+        "options": [
+          {
+            "key": "greeting",
+            "image": "NPC_A.png",
+            "body": "You looking for somethign to do?",
+            "pages": [
+              {
+                "body": "I have a job for you, if you're interested.",
+                "responses": [
+                  {
+                    "body": "Yes pls, i need money.",
+                    "next": "quest_dialog_01",
+                    "vibe": 0
+                  },
+                  {
+                    "body": "Just passing by.",
+                    "next": "bye",
+                    "vibe": 1
+                  }
+                ]
+              }
+            ],
+            "responses": [
+              {
+                "body": "Yes pls, i need money.",
+                "next": "quest_dialog_01",
+                "vibe": 0
+              },
+              {
+                "body": "Just passing by.",
+                "next": "bye",
+                "vibe": 1
+              }
+            ]
+          },
+          {
+            "key": "quest_dialog_01",
+            "body": "See that spinng cube? Go pick it up for me.",
+            "responses": [
+              {
+                "body": "oki",
+                "next": "quest_dialog_02",
+                "vibe": 0
+              }
+            ]
+          },
+          {
+            "key": "quest_dialog_02",
+            "body": "Fanks luv",
+            "progressQuest": true,
+            "responses": []
+          },
+          {
+            "key": "bye",
+            "body": "Goodbye! Have a great day!",
+            "responses": []
+          }
+        ]
+      },
+      {
+        "questUid": "Item_Pickup_Quest_Test",
+        "questStepIndex": 2,
+        "options": [
+          {
+            "key": "greeting",
+            "image": "NPC_A.png",
+            "body": "Elo again",
+            "pages": [
+              {
+                "body": "Did you find that cube I asked for?",
+                "responses": [
+                  {
+                    "body": "ye I did",
+                    "next": "quest_dialog_01",
+                    "vibe": 0
+                  },
+                  {
+                    "body": "oopsie no",
+                    "next": "bye",
+                    "vibe": 1
+                  }
+                ]
+              }
+            ],
+            "responses": [
+              {
+                "body": "Yes pls, i need money.",
+                "next": "quest_dialog_01",
+                "vibe": 0
+              },
+              {
+                "body": "Just passing by.",
+                "next": "bye",
+                "vibe": 1
+              }
+            ]
+          },
+          {
+            "key": "quest_dialog_01",
+            "body": "Did you find that cube I asked for?",
+            "responses": [
+              {
+                "body": "kony-chiwa yes",
+                "next": "quest_dialog_02",
+                "vibe": 0
+              }
+            ]
+          },
+          {
+            "key": "quest_dialog_02",
+            "body": "Fanks luv",
+            "progressQuest": true,
+            "responses": []
+          },
+          {
+            "key": "bye",
+            "body": "Goodbye! Have a great day!",
+            "responses": []
+          }
+        ]
+      }
+    ]
+  }
 }

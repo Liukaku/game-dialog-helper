@@ -1,0 +1,30 @@
+{
+  "general": {
+    "optionsByTier": []
+  },
+  "story": {
+    "quests": [
+      {
+        "questUid": "quest-111111111",
+        "questStepIndex": 0,
+        "options": [
+          {
+            "key": "greeting",
+            "body": "1",
+            "responses": []
+          },
+          {
+            "key": "option-2",
+            "body": "",
+            "responses": []
+          }
+        ]
+      },
+      {
+        "questUid": "quest-2",
+        "questStepIndex": 0,
+        "options": []
+      }
+    ]
+  }
+}

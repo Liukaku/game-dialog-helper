@@ -1,0 +1,113 @@
+{
+  "general": {
+    "optionsByTier": []
+  },
+  "story": {
+    "quests": [
+      {
+        "questUid": "quest-1",
+        "questStepIndex": 0,
+        "options": [
+          {
+            "key": "greeting",
+            "body": "Hey cmon catch up",
+            "responses": [],
+            "pages": [
+              {
+                "body": "You’re starting secondary school soon so I want to make sure you  learned something useful before the big day",
+                "vibe": 0
+              },
+              {
+                "body": "It sucks im finishing before you start but I got taught these before I started too and they got me out on the better side of fights ",
+                "vibe": 0
+              },
+              {
+                "body": "They aren't the kinda spells they teach you either. Don't want to encourage fighting and all...",
+                "vibe": 0
+              },
+              {
+                "body": "Let's start with this once, nothing beats chucking a firework rock at someone, now concentrate hard!",
+                "vibe": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "questUid": "quest-1",
+        "questStepIndex": 1,
+        "options": [
+          {
+            "key": "greeting",
+            "body": "The harder you concentrate the bigger the punch but don't expect to concentrate for long in a scrap.",
+            "responses": []
+          }
+        ]
+      },
+      {
+        "questUid": "quest-1",
+        "questStepIndex": 2,
+        "options": [
+          {
+            "key": "greeting",
+            "body": "You've just gotta feel it, it's like throwing a ball, right at the moment it leaves your fingertips but instead of letting go you let it build up that potential momentum and release it late.",
+            "responses": []
+          }
+        ]
+      },
+      {
+        "questUid": "quest-1",
+        "questStepIndex": 2,
+        "options": [
+          {
+            "key": "greeting",
+            "body": "Fantastic! Next up, you'll always want to try and dodge incoming attacks but when in doubt throw up a block, it's not gonna stop everything but it should help take the edge off",
+            "responses": []
+          }
+        ]
+      },
+      {
+        "questUid": "quest-5",
+        "questStepIndex": 0,
+        "options": [
+          {
+            "key": "greeting",
+            "body": "Amazing! ",
+            "responses": [],
+            "pages": [
+              {
+                "body": "For the record I can't imagine you'd get into many fights but sometimes you don't get to pick them. People use some weird spells in the moment so try to finish things quickly if you end up in one. Someone used a pencil sharpening spell on me in my third year, took some time for my finger to back to normal",
+                "vibe": 0,
+                "responses": [
+                  {
+                    "body": "What? Really",
+                    "next": "response-1",
+                    "vibe": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "response-1",
+            "body": "Yeah! I can't believe I never told you that one before! Man it sucks I can't be with you there",
+            "responses": [],
+            "pages": [
+              {
+                "body": "I'm gonna miss you little one",
+                "vibe": 0,
+                "responses": [
+                  {
+                    "body": "yeah, I'll miss you too...",
+                    "next": "response-1",
+                    "vibe": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
