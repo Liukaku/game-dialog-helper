@@ -60,54 +60,85 @@ export default function QuestForm({ quest, updateStoryQuest }: QuestFormProps) {
   }
 
   return (
-    <div className="border border-gray-300 p-4 mb-4 bg-white rounded-lg shadow-md">
-      <div className="flex flex-col gap-2z w-5/6 m-auto p-4 bg-white rounded-lg shadow-md border border-gray-300">
-        <label className="text-sm font-semibold">Quest UID:</label>
-        <br />
-        <input
-          type="text"
-          className="border rounded p-2 font-mono"
-          value={questUid}
-          onChange={(e) => setQuestUid(e.target.value)}
-        />
-
-        <label className="text-sm font-semibold">
-          Quest Step Index:
-          <br />
-        </label>
-        <input
-          type="number"
-          className="border rounded p-2"
-          value={questStepIndex}
-          onChange={(e) => setQuestStepIndex(Number(e.target.value))}
-        />
+    <div className="quest-container">
+      {/* Quest Header with Collapse Button */}
+      <div className="flex-between mb-4">
+        <div className="quest-header">
+          <span className="text-lg">📖</span>
+          <span className="font-mono text-base">{questUid}</span>
+          <span className="ml-2 text-xs font-normal text-slate-300">Step {questStepIndex}</span>
+        </div>
+        <button
+          onClick={toggleHideDiv}
+          className="text-slate-400 hover:text-slate-200 transition text-xl"
+          title={sectionDisplay ? "Hide options" : "Show options"}
+        >
+          {sectionDisplay ? "▼" : "▶"}
+        </button>
       </div>
-      <button
-        className="bg-green-500 text-white px-4 py-2 rounded mb-4"
-        onClick={() => CreateNewOption()}
-      >
-        Create New Option
-      </button>
-      <button
-        onClick={toggleHideDiv}
-        className="bg-blue-500 text-white hover:underline px-4 py-2 rounded mb-4 "
-      >
-        {sectionDisplay ? "Show Options" : "Hide Options"}
-      </button>
-      <div ref={divRef} className="mt-2">
-        {quest.options.map((option, index) => {
-          const originalKey = option.key;
-          function updateOption(option: Option2) {
-            UpdateOption(option, index);
-          }
-          return (
-            <QuestOptionForm
-              key={originalKey}
-              option={option}
-              updateOption={updateOption}
+
+      {/* Quest Metadata */}
+      <div className="card-dark p-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="form-group">
+            <label className="form-label">Quest UID</label>
+            <input
+              type="text"
+              className="form-input"
+              value={questUid}
+              onChange={(e) => setQuestUid(e.target.value)}
+              placeholder="e.g., quest-1"
             />
-          );
-        })}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Step Index</label>
+            <input
+              type="number"
+              className="form-input"
+              value={questStepIndex}
+              onChange={(e) => setQuestStepIndex(Number(e.target.value))}
+              min="0"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Options Control */}
+      <div className="flex-gap mb-4">
+        <button
+          className="btn-secondary"
+          onClick={() => CreateNewOption()}
+          title="Add a new NPC dialogue option"
+        >
+          + New Option ({quest.options.length})
+        </button>
+      </div>
+
+      {/* Options List */}
+      <div ref={divRef} className="space-y-3">
+        {quest.options.length === 0 ? (
+          <div className="text-slate-500 italic text-sm text-center py-6 bg-slate-700 rounded border border-slate-600">
+            No options yet. Create one to add NPC dialogue.
+          </div>
+        ) : (
+          quest.options.map((option, index) => {
+            const originalKey = option.key;
+            function updateOption(option: Option2) {
+              UpdateOption(option, index);
+            }
+            return (
+              <div key={originalKey}>
+                <QuestOptionForm
+                  option={option}
+                  updateOption={updateOption}
+                  index={index}
+                  total={quest.options.length}
+                />
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );

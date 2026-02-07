@@ -1,14 +1,18 @@
 import { Response } from "@/app/types";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ResponseFormProps {
   props: Response;
   updateState: (response: Response) => void;
+  index?: number;
+  isCompact?: boolean;
 }
 
 export default function ResponseForm({
   props,
   updateState,
+  index,
+  isCompact,
 }: ResponseFormProps) {
   const [body, setBody] = useState(props.body);
   const [next, setNext] = useState(props.next);
@@ -26,31 +30,60 @@ export default function ResponseForm({
   }, [body, next, vibe]);
 
   return (
-    <form className="flex flex-col gap-2z w-4/6 m-auto p-4 bg-white rounded-lg shadow-md border border-gray-300">
-      <h2 className="text-lg font-bold mb-2">Player Form</h2>
-      <p className="text-sm text-gray-500 mb-2">
-        This will be displayed as a button, not a full response.
-      </p>
-      <label className="text-sm font-semibold">Response Body:</label>
-      <textarea
-        className="border rounded p-2"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-      />
-      <label className="text-sm font-semibold">Next Step (option key):</label>
-      <input
-        type="text"
-        className="border rounded p-2"
-        value={next}
-        onChange={(e) => setNext(e.target.value)}
-      />
-      <label className="text-sm font-semibold">Vibe Score:</label>
-      <input
-        type="number"
-        className="border rounded p-2"
-        value={vibe}
-        onChange={(e) => setVibe(Number(e.target.value))}
-      />
-    </form>
+    <div className={isCompact ? "response-container" : "response-container mb-4"}>
+      <div className="response-header">
+        <span>👤</span>
+        {index !== undefined && <span className="ml-1">Choice {index + 1}</span>}
+      </div>
+
+      <div className={isCompact ? "space-y-2" : "card-dark p-3"}>
+        <div className="form-group">
+          <label className="form-label">Player Choice Text</label>
+          {!isCompact && (
+            <p className="text-muted-sm mb-2">
+              This appears as a button the player can click
+            </p>
+          )}
+          <textarea
+            className={isCompact ? "form-textarea text-xs" : "form-textarea"}
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            placeholder="What does the player say or choose?"
+          />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Next Option (Key)</label>
+          {!isCompact && (
+            <p className="text-muted-sm mb-2">
+              Which NPC option comes next? (e.g., &quot;greeting&quot;, &quot;farewell&quot;)
+            </p>
+          )}
+          <input
+            type="text"
+            className={isCompact ? "form-input font-mono text-xs" : "form-input font-mono"}
+            value={next}
+            onChange={(e) => setNext(e.target.value)}
+            placeholder="e.g., option-1"
+          />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Vibe Score</label>
+          {!isCompact && (
+            <p className="text-muted-sm mb-2">
+              Personality response (e.g., 0=neutral, 1=friendly, -1=hostile)
+            </p>
+          )}
+          <input
+            type="number"
+            className={isCompact ? "form-input text-xs" : "form-input"}
+            value={vibe}
+            onChange={(e) => setVibe(Number(e.target.value))}
+            placeholder="0"
+          />
+        </div>
+      </div>
+    </div>
   );
 }

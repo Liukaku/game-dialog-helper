@@ -24,30 +24,56 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
   }, []);
 
   return (
-    <div className="bg-gray-100 text-center">
-      <div className="flex flex-col w-5/6 m-auto ">
-        <div className="text-center font-black text-2xl my-8">
-          <h1>Dialog Builder</h1>
+    <div className="min-h-screen bg-slate-900 py-12">
+      <div className="max-w-2xl mx-auto px-4">
+        {/* Header */}
+        <div className="card-dark p-8 mb-8 border-l-4 border-sky-400">
+          <h1 className="text-4xl font-bold text-slate-100 mb-2 flex items-center gap-3">
+            <span>✨</span>
+            <span>Create New Dialog</span>
+          </h1>
+          <p className="text-slate-400">
+            Start building a new quest dialog from scratch
+          </p>
         </div>
-        <h2 className="text-xl">Create a new Story Quest Dialog</h2>
 
-        <h3 className="mt-4">Existing Dialogs</h3>
-        {/* read only list of dialog names, not links */}
-        {state?.map((dialog) => (
-          <div key={dialog.filename} className="bg-gray-200 p-2 rounded my-1">
-            {dialog.filename.replace(".json", "")}
-          </div>
-        ))}
+        {/* Existing Dialogs Section */}
+        <div className="card-dark p-6 mb-8 border-l-4 border-emerald-400">
+          <h2 className="section-header">
+            <span>📚</span>
+            <span>Existing Dialogs</span>
+          </h2>
 
+          {!state ? (
+            <div className="text-center py-6">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-sky-500"></div>
+              <p className="mt-2 text-slate-400 text-sm">Loading dialogs...</p>
+            </div>
+          ) : state.length === 0 ? (
+            <p className="text-slate-400 italic text-center py-4">No dialogs created yet</p>
+          ) : (
+            <div className="grid gap-2">
+              {state.map((dialog) => (
+                <div
+                  key={dialog.filename}
+                  className="bg-slate-700 p-3 rounded border border-slate-600 text-slate-300 text-sm font-mono"
+                >
+                  {dialog.filename.replace(".json", "")}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Create Form */}
         <form
-          className="bg-white p-4 rounded-lg shadow-md mt-8"
+          className="card-dark p-8 border-l-4 border-sky-400"
           onSubmit={(e) => {
             e.preventDefault();
             if (!dialogName) {
               alert("Please enter a dialog name");
               return;
             }
-            // this returns a 303 redirect to the new dialog page, so we need to follow the redirect manually
             fetch("/api/dialog", {
               method: "POST",
               headers: {
@@ -71,39 +97,58 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
             });
           }}
         >
-          <h2 className="text-lg font-bold mb-2">Create New Dialog</h2>
-          <label className="text-sm font-semibold">Dialog Name:</label>
-          <br />
-          <input
-            type="text"
-            className="border rounded p-2 font-mono w-full"
-            placeholder="Enter dialog name (without .json)"
-            onChange={(e) => {
-              const value = e.target.value;
-              if (!/^[a-zA-Z0-9_-]*$/.test(value)) {
-                setError(
-                  "Only letters, numbers, underscores, and dashes are allowed",
-                );
-              } else if (
-                state?.some((dialog) => dialog.filename === value + ".json")
-              ) {
-                setError("A dialog with this name already exists");
-              } else {
-                setError(null);
-                setDialogName(value);
-              }
-            }}
-          />
-          {nameError && (
-            <p className="text-red-500 text-sm mt-1">{nameError}</p>
-          )}
-          <button
-            type="submit"
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            disabled={nameError !== null}
-          >
-            Create Dialog
-          </button>
+          <h2 className="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-2">
+            <span>📝</span>
+            <span>Dialog Details</span>
+          </h2>
+
+          <div className="form-group">
+            <label className="form-label">Dialog Name</label>
+            <p className="text-muted-sm mb-2">
+              Use letters, numbers, underscores, and dashes only
+            </p>
+            <input
+              type="text"
+              className="form-input font-mono"
+              placeholder="e.g., TOWN_GUARD, FOREST_QUEST_1"
+              onChange={(e) => {
+                const value = e.target.value;
+                if (!/^[a-zA-Z0-9_-]*$/.test(value)) {
+                  setError(
+                    "Only letters, numbers, underscores, and dashes are allowed",
+                  );
+                } else if (
+                  state?.some((dialog) => dialog.filename === value + ".json")
+                ) {
+                  setError("A dialog with this name already exists");
+                } else {
+                  setError(null);
+                  setDialogName(value);
+                }
+              }}
+            />
+            {nameError && (
+              <p className="text-red-400 text-sm mt-2">{nameError}</p>
+            )}
+          </div>
+
+          <div className="flex-gap mt-6">
+            <button
+              type="submit"
+              className="btn-secondary flex-1"
+              disabled={nameError !== null || !dialogName}
+            >
+              ✓ Create Dialog
+            </button>
+            <a href="/" className="flex-1">
+              <button
+                type="button"
+                className="btn-tertiary w-full"
+              >
+                ← Back
+              </button>
+            </a>
+          </div>
         </form>
       </div>
     </div>
